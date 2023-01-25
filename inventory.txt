@@ -1,6 +1,32 @@
-Blockout White: 0
+Blockout White: 3
 Bright Red: 0
 Burnt Sienna: 0
 Burnt Umber: 0
 Chrome Orange: 0
-
+Chrome Yellow: 0
+Cobalt Blue: 0
+Deep Yellow: 0
+Fire Red: 0
+Fluorescent Blue: 0
+Fluorescent Green: 0
+Fluorescent Magenta: 0
+Fluorescent Orange: 0
+Fluorescent Pink: 0
+Fluorescent Red: 0
+Fluorescent Violet: 0
+Fluorescent Yellow: 4
+Green Oxide: 0
+Magenta: 0
+Mars Black: 0
+Metallic Brass: 0
+Metallic Copper: 0
+Metallic Silver: 0
+Metallic Soft Gold: 0
+Phthalo Blue: 0
+Phthalo Green: 0
+Phthalo Red: 0
+Raw Sienna: 0
+Raw Umber: 0
+Ultramarine Blue: 0
+Venetian Red: 0
+Violet: 0

@@ -134,8 +134,9 @@ public class ColorSelector extends JFrame {
             for(ColorItem item : inventory) {
                 if(item.getColor().equalsIgnoreCase(color)) {
                     item.setQuantity(quantity);
+
                     updateInventoryOnEDT();
-                    return;
+                    break;
                 }
             }
             saveInventory();
