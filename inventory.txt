@@ -1,7 +1,6 @@
-Red: 123
-Yellow: 45
-Blue: 0
-Purple: 0
-Black: 1
-Orange: 0
-Green: 5
+Blockout White: 0
+Bright Red: 0
+Burnt Sienna: 0
+Burnt Umber: 0
+Chrome Orange: 0
+

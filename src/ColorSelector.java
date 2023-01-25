@@ -14,33 +14,40 @@ public class ColorSelector extends JFrame {
 
     public ColorSelector() {
         setTitle("Color Selector");
-        //setSize(400, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
+        //create panel for ui elements
+        JPanel UIContainer = new JPanel();
+
         colorList = new JComboBox<String>();
-
-        colorList.addActionListener(e -> {
-            String color = (String) colorList.getSelectedItem();
-            assert color != null;
-        });
-
-        add(colorList);
+        UIContainer.add(colorList);
 
         JLabel quantityLabel = new JLabel("Quantity:");
-        add(quantityLabel);
+        UIContainer.add(quantityLabel);
 
         quantityField = new JTextField(5);
-        add(quantityField);
+        UIContainer.add(quantityField);
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(new SaveButtonListener());
-        add(saveButton);
-
-        createInventoryTable();
+        UIContainer.add(saveButton);
 
         inventory = new ArrayList<>();
         loadInventory();
+
+        //create panel for table
+        JPanel tablePanel = new JPanel();
+        inventoryTable = new JTable(new InventoryTableModel(inventory));
+        JScrollPane scrollPane = new JScrollPane(inventoryTable);
+        tablePanel.add(scrollPane);
+
+        add(tablePanel, BorderLayout.SOUTH);
+        add(UIContainer, BorderLayout.NORTH);
+
+
+
+        //createInventoryTable();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) (screenSize.getWidth() * 0.4);
@@ -57,9 +64,9 @@ public class ColorSelector extends JFrame {
     }
 
 
-    private class InventoryTableModel extends AbstractTableModel {
+    private static class InventoryTableModel extends AbstractTableModel {
         private ArrayList<ColorItem> inventory;
-        private String[] columnNames = {"Color", "Quantity"};
+        private final String[] columnNames = {"Color", "Quantity"};
 
         public InventoryTableModel(ArrayList<ColorItem> inventory) {
             this.inventory = inventory;
@@ -84,6 +91,10 @@ public class ColorSelector extends JFrame {
 
         public String getColumnName(int column) {
             return columnNames[column];
+        }
+
+        public void setInventory(ArrayList<ColorItem>inventory) {
+            this.inventory = inventory;
         }
     }
 
@@ -123,11 +134,27 @@ public class ColorSelector extends JFrame {
             for(ColorItem item : inventory) {
                 if(item.getColor().equalsIgnoreCase(color)) {
                     item.setQuantity(quantity);
-                    break;
+                    updateInventoryOnEDT();
+                    return;
                 }
             }
             saveInventory();
         }
+    }
+
+    public void updateInventory() {
+        // Update the table model
+        ((InventoryTableModel)inventoryTable.getModel()).setInventory(inventory);
+        // Refresh the table display
+        inventoryTable.repaint();
+    }
+
+    public void updateInventoryOnEDT() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                updateInventory();
+            }
+        });
     }
 
     public static void main(String[] args) {
