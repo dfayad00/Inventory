@@ -1,4 +1,4 @@
-Blockout White: 3
+Blockout White: 0
 Bright Red: 0
 Burnt Sienna: 0
 Burnt Umber: 0
@@ -14,7 +14,7 @@ Fluorescent Orange: 0
 Fluorescent Pink: 0
 Fluorescent Red: 0
 Fluorescent Violet: 0
-Fluorescent Yellow: 4
+Fluorescent Yellow: 0
 Green Oxide: 0
 Magenta: 0
 Mars Black: 0
